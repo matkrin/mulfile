@@ -43,9 +43,9 @@ Thus, it is possible to access images by indexing and slicing.
 
 
 Single STM-images are stored in objects with their image data (2D numpy array)
-and metadata as `properties`_.
+and metadata as `attributes`_.
 
-.. _properties: https://github.com/matkrin/mulfile/wiki
+.. _attributes: https://github.com/matkrin/mulfile/wiki
 
 .. code-block:: python
 
