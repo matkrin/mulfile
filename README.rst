@@ -68,8 +68,8 @@ of `gwyddion`_ (.gwy)
 .. _gwyddion: http://gwyddion.net/documentation/user-guide-en/gwyfile-format.html
 
 
-Development Status
-------------------
+Status
+------
 
 STM-images, together with the corresponding metadata, are fully supported  in
 both .mul and .flm files. Pointscans are not supported yet.
