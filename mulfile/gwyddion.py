@@ -11,8 +11,10 @@ if TYPE_CHECKING:
 class Gwy:
     """Class for handeling the construction of bytes for a .gwy-file
 
-    :param imgs: the Mul or MulImage instance that is converted to bytes
-                 according to the GWY file format
+    Args
+        imgs: the Mul or MulImage instance that is converted to bytes
+             according to the GWY file format
+
     """
 
     def __init__(self, imgs: Union[Mul, MulImage]) -> None:
@@ -28,7 +30,12 @@ class Gwy:
     def _make_si_unit(self, dimension: str) -> bytes:
         """Constructs GwySIUnit
 
-        :param dimension: spacial dimension of the SI Unit (either xy or z)
+        Args:
+            dimension: spacial dimension of the SI Unit (either xy or z)
+
+        Returns:
+            GwySIUnit bytes
+
         """
 
         si_name = (
@@ -42,7 +49,12 @@ class Gwy:
     def _make_datafield(self, img: MulImage) -> bytes:
         """Constructs a GwyDatafield as defined by the .gwy file format
 
-        :param img: the image for which the datafield bytes are created
+        Args:
+            img: the image for which the datafield bytes are created
+
+        Returns:
+            GwyDataField bytes
+
         """
 
         datafield = b"".join(
@@ -72,8 +84,13 @@ class Gwy:
     def _make_meta(self, img: MulImage, channel_num: int) -> bytes:
         """Constructs a  GwyContainer containing the meta-data of an image
 
-        :param img: the image for which the datafield bytes are created
-        :param channel_num: the number of the channel in the GWY file
+        Args:
+            img: the image for which the datafield bytes are created
+            channel_num: the number of the channel in the GWY file
+
+        Return:
+            GwyContainer containing meta-data in bytes
+
         """
 
         meta_name = bytes(f"/{channel_num}/meta\0o", "utf-8")
@@ -109,6 +126,10 @@ class Gwy:
     def _make_data_container(self) -> bytes:
         """Constructs a top-level GwyContainer containing image data as
         GwyDataFields and image meta-data as nested GwyContainers
+
+        Returns:
+            Top-level GwyConainer with DataFields and meta-data in bytes
+
         """
 
         container = b""
@@ -131,6 +152,10 @@ class Gwy:
 
     def _make_gwy(self) -> bytes:
         """Constructs the content of a .gwy-file as defined by the GWY file format
+
+        Returns:
+            Bytes of the complete GWY file
+
         """
 
         GWY_HEADER = b"GWYP"
@@ -140,7 +165,9 @@ class Gwy:
     def save_gwyfile(self, output_name: str) -> None:
         """Writes the content of a .gwy file into a file
 
-        :param output_name: name of the .gwy file to create
+        Args:
+            output_name: name of the .gwy file to create
+
         """
 
         with open(output_name, "wb") as f:

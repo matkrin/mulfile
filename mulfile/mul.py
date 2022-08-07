@@ -82,7 +82,11 @@ class MulImage:
     def __add__(self, other: MulImage) -> Mul:
         """Defines the addition operator for MulImage-instances
 
-        :param other: the MulImage that is added
+        Args:
+            other: the MulImage that is added
+
+        Returns:
+            A new instance of Mul containing self and other
         """
 
         return Mul([self, other])
@@ -90,7 +94,9 @@ class MulImage:
     def save_gwy(self, output_name: str) -> None:
         """Saves a MulImage-instance as a GWY file
 
-        :param output_name: name of the .gwy file to create
+        Args:
+            output_name: name of the .gwy file to create
+
         """
 
         gwy = Gwy(self)
@@ -100,7 +106,9 @@ class MulImage:
 class Mul(UserList):
     """Class for an entire mulfile, list-like sequence of MulImage STM-images
 
-    :param data: the data the Mul-instance contains
+    Args:
+        data: the data the Mul-instance contains
+
     """
 
     def __init__(self, data: List[MulImage]) -> None:
@@ -110,7 +118,9 @@ class Mul(UserList):
     def save_gwy(self, output_name: str) -> None:
         """Saves a Mul-instance as a GWY file
 
-        :param output_name: name of the .gwy file to create
+        Args:
+            output_name: name of the .gwy file to create
+
         """
 
         gwy = Gwy(self)
@@ -120,7 +130,13 @@ class Mul(UserList):
 def read_mul(filepath: Union[str, Path]) -> Union[Mul, MulImage]:
     """Parses a mul-file (.mul) or a flm-file (.flm)
 
-    :param filepath: absolute or relative path to the .mul or .flm file
+    Args:
+        filepath: absolute or relative path to the .mul or .flm file
+
+    Returns:
+        An instance of Mul if more than one image was found in the file
+        or an instance of Mul if the file contains one image
+
     """
 
     basename = os.path.basename(filepath)
