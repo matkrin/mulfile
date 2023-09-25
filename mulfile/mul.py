@@ -127,7 +127,7 @@ class Mul(UserList):
         gwy.save_gwyfile(output_name)
 
 
-def read_mul(filepath: Union[str, Path]) -> Union[Mul, MulImage]:
+def read_mul(filepath: Union[str, Path]) -> Mul:
     """Parses a mul-file (.mul) or a flm-file (.flm)
 
     Args:
@@ -146,7 +146,7 @@ def read_mul(filepath: Union[str, Path]) -> Union[Mul, MulImage]:
 
     MUL_BLOCK = 128
     filesize = os.path.getsize(filepath)
-    data = []
+    data: List[MulImage] = []
 
     with open(filepath, "rb") as f:
         nr = unpack("h", f.read(2))[0]
@@ -247,8 +247,5 @@ def read_mul(filepath: Union[str, Path]) -> Union[Mul, MulImage]:
                     img_data,
                 )
             )
-
-    if len(data) == 1:
-        return data[0]
 
     return Mul(data)

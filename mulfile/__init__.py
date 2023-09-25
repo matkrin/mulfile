@@ -3,7 +3,7 @@ from pathlib import Path
 from . import mul
 
 
-def load(file: Union[str, Path]) -> Union[mul.Mul, mul.MulImage]:
+def load(file: Union[str, Path]) -> mul.Mul:
     """Parses a mul-file (.mul) or a flm-file (.flm)
 
     Args:

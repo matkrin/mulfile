@@ -2,7 +2,7 @@ from pathlib import Path
 import pytest
 
 import mulfile as mul
-from mulfile.mul import Mul, MulImage
+from mulfile.mul import Mul
 
 test_filepath = Path(__file__).parent / "test_files"
 
@@ -58,11 +58,11 @@ def test_flm_save_gwy(tmp_path):
 
 def test_mul_load_single():
     test_mul_single = mul.load(TEST_MUL_SINGLE)
-    assert isinstance(test_mul_single, MulImage)
-    assert test_mul_single.tilt == 349
-    assert test_mul_single.gain == 10000
-    assert test_mul_single.xres == 512
-    assert test_mul_single.img_data.shape == (512, 512)
+    assert isinstance(test_mul_single, Mul)
+    assert test_mul_single[0].tilt == 349
+    assert test_mul_single[0].gain == 10000
+    assert test_mul_single[0].xres == 512
+    assert test_mul_single[0].img_data.shape == (512, 512)
 
 
 def test_mul_save_gwy_single(tmp_path):
