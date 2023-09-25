@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mulfile"
-version = "0.2.0"
+version = "0.3.0"
 description = "Python library to read .mul and .flm files"
 authors = ["Matthias Krinninger <matkrin@protonmail.com>"]
 license = "BSD-3-Clause"
