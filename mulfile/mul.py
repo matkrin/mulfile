@@ -203,9 +203,7 @@ def read_mul(filepath: Union[str, Path]) -> Mul:
                     ps_lscan = unpack("h", f.read(2))[0]
 
                     f.read(MUL_BLOCK - 18 * 2)  # spare
-                    ps_data = np.frombuffer(
-                        f.read(ps_size * 2), dtype=np.int16
-                    )
+                    ps_data = np.frombuffer(f.read(ps_size * 2), dtype=np.int16)
 
             block_counter += size
 
