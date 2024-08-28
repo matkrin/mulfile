@@ -7,6 +7,7 @@ from struct import unpack
 from dataclasses import dataclass
 from collections import UserList
 import numpy as np
+from numpy.typing import NDArray
 
 from .gwyddion import Gwy
 
@@ -77,7 +78,7 @@ class MulImage:
     unitnr: int
     version: int
     gain: int
-    img_data: np.ndarray
+    img_data: NDArray[np.float64]
 
     def __add__(self, other: MulImage) -> Mul:
         """Defines the addition operator for MulImage-instances
@@ -103,7 +104,7 @@ class MulImage:
         gwy.save_gwyfile(output_name)
 
 
-class Mul(UserList):
+class Mul(UserList[MulImage]):
     """Class for an entire mulfile, list-like sequence of MulImage STM-images
 
     Args:
@@ -185,8 +186,8 @@ def read_mul(filepath: Union[str, Path]) -> Mul:
             spare_57, spare_58, spare_59 = unpack("hhh", f.read(6))
             gain, spare_61, spare_62, spare_63 = unpack("hhhh", f.read(8))
 
-            img_data = np.frombuffer(f.read(xres * yres * 2), dtype=np.int16)
-            img_data = img_data.astype("float64")
+            img_data_raw = np.frombuffer(f.read(xres * yres * 2), dtype=np.int16)
+            img_data: NDArray[np.float64] = img_data_raw.astype("float64")
             img_data *= -0.1 / 1.36 * zscale / 2000  # in nm
             img_data = img_data.reshape((xres, yres))
 
