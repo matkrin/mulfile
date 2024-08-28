@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "mulfile"
-version = "0.3.0"
+version = "0.4.0"
 description = "Python library to read .mul and .flm files"
 authors = ["Matthias Krinninger <matkrin@protonmail.com>"]
 license = "BSD-3-Clause"
@@ -18,8 +18,8 @@ classifiers = [
 include = ["mulfile/py.typed"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
-numpy = "^1.23.1"
+python = ">=3.10"
+numpy = ">=1.24"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"
@@ -34,7 +34,7 @@ build-backend = "poetry.core.masonry.api"
 testpaths = ["tests"]
 
 [tool.black]
-line-length = 79
+line-length = 80
 preview = true
 
 [tool.mypy]

@@ -102,9 +102,7 @@ class Gwy:
                 bytes(f"Bias\0s{img.bias * 1e-3:.5f} V\0", "utf-8"),
                 bytes(f"Current\0s{img.current:.2f} nA\0", "utf-8"),
                 bytes(f"Current factor\0s{img.currfac}\0", "utf-8"),
-                bytes(
-                    f"Scan Size\0s{img.xsize} nm, {img.ysize} nm\0", "utf-8"
-                ),
+                bytes(f"Scan Size\0s{img.xsize} nm, {img.ysize} nm\0", "utf-8"),
                 bytes(f"Resolution\0s{img.xres}, {img.yres}\0", "utf-8"),
                 bytes(f"Datetime\0s{img.datetime}\0", "utf-8"),
                 bytes(f"Gain\0s{img.gain}\0", "utf-8"),
